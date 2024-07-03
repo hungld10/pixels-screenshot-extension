@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 440px; /* Adjust the width as needed */
+    padding: 4px;
+    text-align: center; /* Align content to the right */
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+img {
+    width: 100%; /* Make the image take the full width of the popup */
+    max-width: 420px; /* Optional: set a max width for the image */
+    margin-top: 10px;
+    cursor: zoom-in;
+    transition: transform 0.2s ease; /* Smooth zoom transition */
+}
+
+img.zoomed-in {
+    cursor: zoom-out; /* Change cursor to indicate zooming out */
+}
