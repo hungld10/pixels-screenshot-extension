@@ -1,12 +1,14 @@
 body {
     font-family: Arial, sans-serif;
     width: 440px; /* Adjust the width as needed */
-    padding: 4px;
+    /* padding: 4px; */
+    margin: 4px;
     text-align: center; /* Align content to the right */
+    background-color: #222044;
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #622aff;
     color: white;
     border: none;
     padding: 8px 8px;
@@ -14,14 +16,15 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    /* margin: 2px 0px; */
+    border-radius: 4px;
     cursor: pointer;
 }
 
 img {
     width: 100%; /* Make the image take the full width of the popup */
-    max-width: 420px; /* Optional: set a max width for the image */
-    margin-top: 10px;
+    max-width: 440px; /* Optional: set a max width for the image */
+    margin-top: 4px;
     cursor: zoom-in;
     transition: transform 0.2s ease; /* Smooth zoom transition */
 }

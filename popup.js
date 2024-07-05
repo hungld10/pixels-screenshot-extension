@@ -6,13 +6,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Capture the browser
     document.getElementById('capture').addEventListener('click', () => {
         chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-            chrome.tabs.captureVisibleTab(tabs[0].windowId, {format: 'png'}, (dataUrl) => {
-                // Save the screenshot to local storage
-                chrome.storage.local.set({latestScreenshot: dataUrl}, () => {
-                    // Update the image in the popup
-                    document.getElementById('screenshot').src = dataUrl;
+            // chrome.tabs.captureVisibleTab(null, {format: 'png'}, (dataUrl) => {
+            //     // Save the screenshot to local storage
+            //     chrome.storage.local.set({latestScreenshot: dataUrl}, () => {
+            //         // Update the image in the popup
+            //         document.getElementById('screenshot').src = dataUrl;
+            //     });
+            // });
+
+            chrome.scripting.executeScript({
+                target: {tabId: tabs[0].id},
+                files: ['dom-to-image-more.min.js']
+            }, () => {
+                chrome.scripting.executeScript({
+                    target: {tabId: tabs[0].id},
+                    func: (taskboardClassName) => {
+                        const elements = document.querySelectorAll('*');
+                        let targetElement = null;
+            
+                        elements.forEach(element => {
+                            if (element.className && element.className.includes(taskboardClassName)) {
+                                targetElement = element;
+                            }
+                        });
+            
+                        if (targetElement) {
+                            return domtoimage.toPng(targetElement)
+                                .then(dataUrl => dataUrl)
+                                .catch(error => console.error('Error capturing element:', error));
+                        } else {
+                            return null;
+                        }
+                    },
+                    args: ['Store_storeDialog'] // Element class name
+                }, (results) => {
+                    const dataUrl = results[0].result;
+                    if (dataUrl) {
+                        // Save the screenshot to local storage
+                        chrome.storage.local.set({latestScreenshot: dataUrl}, () => {
+                            // Update the image in the popup
+                            document.getElementById('screenshot').src = dataUrl;
+                        });
+                    } else {
+                        // If no specific element is found, capture the full screen
+                        chrome.tabs.captureVisibleTab(null, {format: 'png'}, (dataUrl) => {
+                        // Save the screenshot to local storage
+                            chrome.storage.local.set({latestScreenshot: dataUrl}, () => {
+                                // Update the image in the popup
+                                document.getElementById('screenshot').src = dataUrl;
+                            });
+                        });
+                    }
                 });
             });
         });
