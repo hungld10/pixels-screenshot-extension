@@ -9,14 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Capture the browser
     document.getElementById('capture').addEventListener('click', () => {
         chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-            // chrome.tabs.captureVisibleTab(null, {format: 'png'}, (dataUrl) => {
-            //     // Save the screenshot to local storage
-            //     chrome.storage.local.set({latestScreenshot: dataUrl}, () => {
-            //         // Update the image in the popup
-            //         document.getElementById('screenshot').src = dataUrl;
-            //     });
-            // });
-
             chrome.scripting.executeScript({
                 target: {tabId: tabs[0].id},
                 files: ['dom-to-image-more.min.js']

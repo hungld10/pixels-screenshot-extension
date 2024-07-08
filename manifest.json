@@ -1,24 +1,29 @@
 {
-    "manifest_version": 3,
-    "name": "Screenshot Extension",
-    "version": "1.0",
-    "description": "A simple Chrome extension for screenshot.",
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "16": "icon16.png",
-            "48": "icon48.png",
-            "128": "icon128.png"
-        }
-    },
-    "permissions": ["activeTab", "storage", "scripting"],
-    "background": {
-        "service_worker": "background.js"
-    },
-    "web_accessible_resources": [
-        {
-            "resources": ["dom-to-image-more.min.js"],
-            "matches": ["<all_urls>"]
-        }
-    ]
-  }
+  "name": "Pixels Taskboard Screenshot",
+  "description": "A simple Chrome extension to capture Pixels Taskboard and easily complete tasks with the screenshot.",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+        "activeTab", 
+        "storage", 
+        "scripting"
+    ],
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "web_accessible_resources": [
+    {
+        "resources": ["dom-to-image-more.min.js"],
+        "matches": ["<all_urls>"]
+    }
+  ]
+}

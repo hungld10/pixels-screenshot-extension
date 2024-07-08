@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     width: 440px; /* Adjust the width as needed */
-    /* padding: 4px; */
     margin: 4px;
     text-align: center; /* Align content to the right */
     background-color: #222044;
@@ -16,7 +15,6 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    /* margin: 2px 0px; */
     border-radius: 4px;
     cursor: pointer;
 }
