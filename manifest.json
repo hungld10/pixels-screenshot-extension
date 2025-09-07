@@ -13,13 +13,21 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-        "activeTab", 
+        "activeTab",
+        "tabs", 
         "storage", 
         "scripting"
     ],
   "background": {
-    "service_worker": "js/background.js"
+    "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/content.js"],
+      "run_at": "document_end"
+    }
+  ],
   "web_accessible_resources": [
     {
         "resources": ["dom-to-image-more.min.js"],
